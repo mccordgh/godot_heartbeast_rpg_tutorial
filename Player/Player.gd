@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
 
-const ACCELERATION = 500
-const MAX_SPEED = 80
-const FRICTION = 500
-const ROLL_SPEED = 125
+export var ACCELERATION = 500
+export var MAX_SPEED = 80
+export var FRICTION = 500
+export var ROLL_SPEED = 125
 
 onready var animation_player = $AnimationPlayer
 onready var animation_tree = $AnimationTree
