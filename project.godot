@@ -14,6 +14,10 @@ config/name="heartbeast_rpg_tutorial"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PlayersStats="*res://Player/PlayersStats.tscn"
+
 [display]
 
 window/size/width=320

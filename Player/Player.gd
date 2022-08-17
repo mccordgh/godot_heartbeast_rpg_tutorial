@@ -10,6 +10,7 @@ onready var animation_player = $AnimationPlayer
 onready var animation_tree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
 onready var sword_hit_box = $HitboxPosition/SwordHitbox
+onready var hurtbox = $Hurtbox
 
 enum {
 	MOVE,
@@ -20,11 +21,13 @@ enum {
 var state = MOVE
 var velocity = Vector2.ZERO
 var roll_vector = Vector2.DOWN
+var stats = PlayersStats
 
 func _ready():
+	stats.connect("no_health", self, "queue_free")
+
 	animation_tree.active = true
 	sword_hit_box.knockback_vector = roll_vector
-	
 
 func _physics_process(delta):
 	match state:
@@ -87,3 +90,9 @@ func roll_state(delta):
 	
 	velocity = (roll_vector * ROLL_SPEED) * 0.75
 	move()
+
+
+func _on_Hurtbox_area_entered(area):
+	stats.health -= area.damage
+	hurtbox.start_invincibility(1)
+	hurtbox.create_hit_effect()
