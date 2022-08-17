@@ -20,11 +20,11 @@ var state = CHASE
 var knockback = Vector2.ZERO
 var velocity = Vector2.ZERO
 
-
-onready var stats = $Stats
-onready var sprite = $AnimatedSprite
-onready var player_detection_zone = $PlayerDetectionZone
 onready var hurtbox = $Hurtbox
+onready var player_detection_zone = $PlayerDetectionZone
+onready var stats = $Stats
+onready var soft_collision = $SoftCollision
+onready var sprite = $AnimatedSprite
 
 
 func _physics_process(delta):
@@ -49,7 +49,10 @@ func _physics_process(delta):
 				velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 			else:
 				state = IDLE
-						
+	
+	if soft_collision.is_colliding():
+		velocity += soft_collision.get_push_vector() * delta * 400					
+	
 	velocity = move_and_slide(velocity)
 	
 	
