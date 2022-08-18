@@ -1,6 +1,6 @@
 extends Area2D
 
-
+onready var collision_shape = $CollisionShape2D
 onready var timer = $InvincibleTimer
 
 
@@ -42,7 +42,9 @@ func _on_Timer_timeout():
 
 func _on_Hurtbox_invincibility_started():
 	set_deferred("monitoring", false)
+	collision_shape.set_deferred("disabled", true)
 
 
 func _on_Hurtbox_invincibility_ended():
 	monitoring = true
+	collision_shape.disabled = false

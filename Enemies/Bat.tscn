@@ -52,7 +52,7 @@ radius = 7.0
 height = 2.0
 
 [sub_resource type="CircleShape2D" id=9]
-radius = 71.0282
+radius = 130.015
 
 [sub_resource type="CircleShape2D" id=10]
 radius = 4.0
@@ -116,7 +116,7 @@ script = ExtResource( 4 )
 material = SubResource( 12 )
 frames = SubResource( 1 )
 animation = "Fly"
-frame = 3
+frame = 4
 playing = true
 offset = Vector2( 0, -12 )
 
@@ -155,6 +155,7 @@ shape = SubResource( 10 )
 disabled = false
 
 [node name="SoftCollision" parent="." instance=ExtResource( 8 )]
+visible = false
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 shape = SubResource( 11 )

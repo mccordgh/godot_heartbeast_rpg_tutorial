@@ -90,7 +90,7 @@ func back_to_move_state():
 func roll_state():
 	animation_state.travel("Roll")
 	
-	velocity = (roll_vector * ROLL_SPEED) * 0.75
+	velocity = (roll_vector * ROLL_SPEED) * 1.25
 	move()
 
 
@@ -101,7 +101,7 @@ func _on_Hurtbox_area_entered(area):
 	
 	var hurt_sound = player_hurt_sound.instance()
 	get_tree().current_scene.add_child(hurt_sound)
-
+	
 
 func _on_Hurtbox_invincibility_started():
 	blink_animation_player.play("Start")
