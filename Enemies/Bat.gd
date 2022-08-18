@@ -21,6 +21,7 @@ var state = CHASE
 var knockback = Vector2.ZERO
 var velocity = Vector2.ZERO
 
+onready var animation_player = $AnimationPlayer
 onready var hurtbox = $Hurtbox
 onready var player_detection_zone = $PlayerDetectionZone
 onready var stats = $Stats
@@ -95,7 +96,7 @@ func _on_Hurtbox_area_entered(area):
 	knockback = area.knockback_vector * 120
 	stats.health -= area.damage
 	hurtbox.create_hit_effect()
-
+	hurtbox.start_invincibility(0.3)
 
 func _on_Stats_no_health():
 	queue_free()
@@ -106,3 +107,9 @@ func _on_Stats_no_health():
 	get_parent().add_child(enemy_death_effect_instance)
 	
 
+func _on_Hurtbox_invincibility_started():
+	animation_player.play("Start")
+
+
+func _on_Hurtbox_invincibility_ended():
+	animation_player.play("Stop")
